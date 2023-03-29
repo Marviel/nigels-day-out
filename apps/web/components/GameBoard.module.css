@@ -1,0 +1,15 @@
+.gameBoard {
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+    gap: 2px;
+}
+
+.cell {
+    border: 1px solid black;
+    background-color: lightgray;
+}
+
+.player {
+    background-color: blue;
+}
