@@ -1,0 +1,4 @@
+- [ ] Navigation with WASD
+- 
+- [ ] Fight pit with Nigel as the charactger
+- [ ] Nigel Explodes if he's hit
