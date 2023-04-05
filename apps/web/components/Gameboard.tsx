@@ -1,9 +1,4 @@
-import React, {
-  Component,
-  CSSProperties,
-} from 'react';
-
-import styles from './GameBoard.module.css';
+import React, { Component } from 'react';
 
 interface State {
     playerPosition: { x: number; y: number };
@@ -58,6 +53,30 @@ class GameBoard extends Component<{}, State> {
                 this.setState({ playerPosition: newPlayerPosition });
             }
         }
+        else if (key === 'a') {
+            if (playerPosition.x <= 0) {
+                return;
+            }
+            else {
+                const newPlayerPosition = {
+                    ...playerPosition,
+                    x: playerPosition.x - 1,
+                };
+                this.setState({ playerPosition: newPlayerPosition });
+            }
+        }
+        else if (key === 'd') {
+            if (playerPosition.x >= 9) {
+                return;
+            }
+            else {
+                const newPlayerPosition = {
+                    ...playerPosition,
+                    x: playerPosition.x + 1,
+                };
+                this.setState({ playerPosition: newPlayerPosition });
+            }
+        }
     };
 
     render() {
@@ -67,12 +86,14 @@ class GameBoard extends Component<{}, State> {
         for (let y = 0; y < 10; y++) {
             for (let x = 0; x < 10; x++) {
                 const isPlayer = x === playerPosition.x && y === playerPosition.y;
-                const cellStyle: CSSProperties = isPlayer ? { ...styles.cell, ...styles.player } : styles.cell;
-                cells.push(<div key={`cell-${x}-${y}`} className={cellStyle}></div>);
+
+                cells.push(<div key={`cell-${x}-${y}`}></div>);
             }
         }
 
-        return <div className={styles.gameBoard}>{cells}</div>;
+        return <div>
+            {cells}
+        </div>;
     }
 }
 
