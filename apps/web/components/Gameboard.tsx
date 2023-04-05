@@ -14,10 +14,12 @@ class GameBoard extends Component<{}, State> {
     }
 
     componentDidMount() {
+        console.log("GameBoard Mounted!");
         document.addEventListener('keydown', this.handleKeyPress);
     }
 
     componentWillUnmount() {
+        console.log("GameBoard Unmounted!");
         document.removeEventListener('keydown', this.handleKeyPress);
     }
 
@@ -87,12 +89,30 @@ class GameBoard extends Component<{}, State> {
             for (let x = 0; x < 10; x++) {
                 const isPlayer = x === playerPosition.x && y === playerPosition.y;
 
-                cells.push(<div key={`cell-${x}-${y}`}></div>);
+                cells.push(
+                    <div key={`cell-${x}-${y}`} style={{ backgroundColor: isPlayer ? 'lightblue' : 'gray' }}>
+                        X: {x} Y: {y}
+                    </div>
+                );
             }
+            // cells.push(
+            //     <div key={y}>
+            //         <div style={{ backgroundColor: 'lightblue' }}>Plus1: {y + 1}</div>
+            //         <div>Exp 2: {y ** 2}</div>
+            //     </div>
+            // )
         }
 
         return <div>
-            {cells}
+            <h1>Gameboard</h1>
+            <div id="Gameboard-Grid" style={{
+                display: 'grid',
+                gridTemplateColumns: "repeat(10, 50px)",
+                gridTemplateRows: "repeat(10, 50px)",
+                gap: "2px",
+            }}>
+                {cells}
+            </div>
         </div>;
     }
 }

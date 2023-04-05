@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   Accordion,
   AccordionDetails,
@@ -15,6 +17,8 @@ export const nigel = {
   job: 'Wizard',
 };
 
+
+
 // Description of a character named riffraff, a goblin, in json format
 export const riffraff = {
   name: 'Riffraff',
@@ -29,11 +33,17 @@ const players = [
 
 
 export default function Web() {
+  const [showBoard, setShowBoard] = useState(false);
+
+  const gameBoard = showBoard ? <GameBoard /> : null;
+
   return (
     <div>
       <Typography variant='h4'>Nigel's Day Out</Typography>
-      <Button variant="contained">Boop</Button>
-      <GameBoard />
+      <Button variant="contained" onClick={() => setShowBoard(!showBoard)}>Boop</Button>
+      {
+        gameBoard
+      }
       <Accordion>
         <AccordionSummary>
           Players
